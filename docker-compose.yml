@@ -1,0 +1,30 @@
+services:
+  plane-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    restart: unless-stopped
+
+    environment:
+      PLANE_BASE_URL: "https://plan.olbrite.com"
+      PLANE_API_KEY: "${PLANE_API_KEY}"
+      PLANE_WORKSPACE_SLUG: "giorgio"
+
+    networks:
+      - root_default
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=root_default"
+
+      - "traefik.http.routers.plane-mcp.rule=Host(`mcp_plan.olbrite.com`)"
+      - "traefik.http.routers.plane-mcp.entrypoints=websecure"
+      - "traefik.http.routers.plane-mcp.tls=true"
+      - "traefik.http.routers.plane-mcp.tls.certresolver=mytlschallenge"
+
+      - "traefik.http.services.plane-mcp.loadbalancer.server.port=8211"
+
+networks:
+  root_default:
+    external: true
