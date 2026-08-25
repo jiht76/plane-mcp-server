@@ -9,7 +9,6 @@ services:
     environment:
       PLANE_BASE_URL: "https://plan.olbrite.com"
       PLANE_API_KEY: "${PLANE_API_KEY}"
-      PLANE_WORKSPACE_SLUG: "giorgio"
 
     networks:
       - root_default
