@@ -2,14 +2,11 @@ import os
 import time
 
 import httpx
-from fastmcp.server.auth import TokenVerifier
+from fastmcp.server.auth import TokenVerifierstarlette.authentication
 from fastmcp.server.auth.auth import AccessToken
 from fastmcp.utilities.logging import get_logger
-from starlette.authentication import (
-    AuthenticationBackend,
-    AuthCredentials,
-    AuthenticatedUser,
-)
+from starlette.authentication import AuthenticationBackend, AuthCredentials
+from fastmcp.server.auth.auth import AuthenticatedUser
 from starlette.requests import HTTPConnection
 from starlette.middleware import Middleware
 from starlette.authentication import AuthenticationMiddleware
